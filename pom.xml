@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.8</version>
+		<version>3.1.7</version>
 		<relativePath/>
 	</parent>
 	<groupId>org.greatgamesonly.core</groupId>
-	<artifactId>universalcalculator</artifactId>
-	<version>0.4.5</version>
-	<name>universal-calculator</name>
-	<description>The Universal Calculator</description>
+	<artifactId>aurorasaver</artifactId>
+	<version>0.2.2</version>
+	<name>Aurora AutoSaver</name>
+	<description>Aurora AutoSaver</description>
 	<url>https://github.com/ricomaster9000/universal-calculator</url>
 	<licenses>
 		<license>
@@ -24,6 +24,12 @@
 		<developer>
 			<name>Ricardo Minnaar</name>
 			<email>ricorpwd@yahoo.co.za</email>
+			<organization/>
+			<organizationUrl/>
+		</developer>
+		<developer>
+			<name>ChatGPT</name>
+			<email></email>
 			<organization/>
 			<organizationUrl/>
 		</developer>
@@ -50,36 +56,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-hateoas</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web-services</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
+			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>net.logstash.logback</groupId>
@@ -90,32 +67,6 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.12.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derbyclient</artifactId>
-			<version>10.15.2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-			<version>10.15.2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derbynet</artifactId>
-			<version>10.15.2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derbytools</artifactId>
-			<version>10.15.2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -133,19 +84,6 @@
 			<version>0.10.2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.3.0</version>
-		</dependency>
-		<dependency>
 			<groupId>com.github.ricomaster9000</groupId>
 			<artifactId>ResourceUtils</artifactId>
 			<version>1.2.0</version>
@@ -155,12 +93,31 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.15.1</version>
 		</dependency>
+		<!-- JNA library -->
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>5.8.0</version> <!-- Check for the latest version -->
+		</dependency>
+
+		<!-- JNA platform, includes platform-specific mappings -->
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna-platform</artifactId>
+			<version>5.8.0</version> <!-- Check for the latest version -->
+		</dependency>
 
 
 
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -176,100 +133,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<version>8.5.13</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>3.3.0</version>
-				<configuration>
-					<descriptors>
-						<descriptor>src/main/assembly/zip.xml</descriptor>
-					</descriptors>
-					<finalName>universalcalculator-AWS-EB-deploy</finalName>
-					<appendAssemblyId>false</appendAssemblyId>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id> <!-- this is used for inheritance merges -->
-						<phase>package</phase> <!-- bind to the packaging phase -->
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.3.1</version>
-				<executions>
-					<execution>
-						<phase>test</phase>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
-					<execution>
-						<phase>prepare-package</phase>
-						<configuration>
-							<target>
-								<copy todir="${project.basedir}/src/main/resources/static/2y19F09NuVw3vgMvVq1dWx0xQu9-7WVhUJJz0sUrcNMtB6toF5lV3l7m-brtf6TPZrySw45nc8rK9kkNg5wca9ZTF-jvMPA7a9c8X9FkQbydk6qUHpsg4Zd2Yy/javadoc">
-									<fileset dir="${project.build.directory}/apidocs"/>
-								</copy>
-								<copy todir="${project.basedir}/target/classes/static/2y19F09NuVw3vgMvVq1dWx0xQu9-7WVhUJJz0sUrcNMtB6toF5lV3l7m-brtf6TPZrySw45nc8rK9kkNg5wca9ZTF-jvMPA7a9c8X9FkQbydk6qUHpsg4Zd2Yy/javadoc">
-									<fileset dir="${project.build.directory}/apidocs"/>
-								</copy>
-							</target>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>io.fabric8</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.43.4</version>
-				<configuration>
-					<images>
-						<image>
-							<alias>service</alias>
-							<name>great-games-only/${project.name}</name>
-							<build>
-								<dockerFileDir>${project.basedir}</dockerFileDir>
-								<assembly>
-									<descriptorRef>artifact</descriptorRef>
-								</assembly>
-								<ports>
-									<port>5000:5000</port>
-								</ports>
-								<cmd>
-									<shell>java -jar /target/${project.artifactId}-${project.version}.jar</shell>
-								</cmd>
-								<tags>
-									<tag>latest</tag>
-									<tag>${project.version}</tag>
-								</tags>
-							</build>
-
-							<run>
-								<ports>
-									<port>5000:5000</port>
-								</ports>
-							</run>
-						</image>
-					</images>
-				</configuration>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version> <!-- use the latest version -->
 			</plugin>
 		</plugins>
 	</build>
