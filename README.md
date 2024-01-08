@@ -1,5 +1,5 @@
-# Aurora Autosaver
-Just a simple autosaver for Aurora 4x C#
+# Aurora 4X C# Autosaver
+Just a simple autosaver for Aurora 4x C# (https://aurora2.pentarch.org/ , installation - https://aurora2.pentarch.org/index.php?board=276.0)
 
 I made this for myself because Aurora 4x C# has no autosave functionality
 
